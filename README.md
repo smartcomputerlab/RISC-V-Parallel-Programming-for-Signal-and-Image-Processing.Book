@@ -13,10 +13,10 @@ Ultimately, this book is intended for students, researchers, and engineers who a
 Whether the reader is approaching RISC-V for the first time or seeking to deepen their understanding of parallel computing techniques, the goal of this work is to provide a clear and practical path toward efficient algorithm design on one of the most promising computing platforms of our time
 
 
-# Table of Contents
-## Lab 1 : SIMD - Basic vector programming and processing
-## Lab 2 :  Simple Signal Processing with vector instructions
-## Lab 3 :  Simple Image Processing	with vector instructions
-## Lab 4 :  MIMD (+SIMD) processing , vector and multicore processing
-## Lab 5 :  Image processing (filtering) with multiprocessing and vector instructions
+## Table of Contents
+### Lab 1 : SIMD - Basic vector programming and processing
+### Lab 2 :  Simple Signal Processing with vector instructions
+### Lab 3 :  Simple Image Processing	with vector instructions
+### Lab 4 :  MIMD (+SIMD) processing , vector and multicore processing
+### Lab 5 :  Image processing (filtering) with multiprocessing and vector instructions
 
