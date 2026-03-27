@@ -15,16 +15,26 @@ Whether the reader is approaching RISC-V for the first time or seeking to deepen
 
 # Table of Contents
 0. Introduction	6
+1. 
 0.1 From SciPy/NumPy to Python, C and -RISC-V Assembly Programming Stack	7
+   
 0.2 Example Use-Cases	9
+
 0.3 RISC-V platform for SIMD/MIMD programming	10
+
 0.4 The NumPy package	11
+
 0.5 Functionalities of the NumPy and SciPy libraries	12
+
 0.6 Functionalities of the SciPy Library	15
+
 0.7 Common filtering and image-processing functions with descriptions.	17
+
 0.8 How SciPy uses NumPy	20
 
+
 Lab 1 : SIMD - Basic vector programming and processing	21
+
 1.1 Adding two vectors	21
 1.1.1 Serial execution (interpretation): addser_float64.py (default)	21
 1.1.2 Parallel (RVV) execution	24
