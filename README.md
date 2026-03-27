@@ -1,5 +1,5 @@
 <picture>
- <img alt="YOUR-ALT-TEXT" src="images/RV.title.png">
+ <img alt="YOUR-ALT-TEXT" src="images/RV.softstack.archi.png">
 </picture> 
 
 # Introduction
