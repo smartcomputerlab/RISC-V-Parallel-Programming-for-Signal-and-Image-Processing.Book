@@ -1,0 +1,62 @@
+import numpy as np
+import multiprocessing as mp
+import time
+import sys
+# -----------------------------
+# Worker function
+# -----------------------------
+def worker_pi(args):
+    start_idx, end_idx, dx = args
+    x = np.linspace(start_idx*dx, end_idx*dx, end_idx - start_idx, endpoint=False)
+    y = 4.0 / (1.0 + x*x)  # vectorized computation
+    return np.sum(y) * dx
+# -----------------------------
+# Main
+# -----------------------------
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: python3 pi_mp.py NUM_SAMPLES NUM_PROCESSES")
+        return
+    N = int(sys.argv[1])       # total number of rectangles
+    nproc = int(sys.argv[2])   # number of processes
+    print(f"Calculating Pi with {N} samples using {nproc} processes...")
+    dx = 1.0 / N
+    # Split indices for each process
+    chunk_size = N // nproc
+    args_list = []
+    for i in range(nproc):
+        start = i * chunk_size
+        end = N if i == nproc-1 else (i+1)*chunk_size
+        args_list.append((start, end, dx))
+    # -----------------------------
+    # Multiprocessing pool
+    # -----------------------------
+    t0 = time.time()
+    with mp.Pool(processes=nproc) as pool:
+        results = pool.map(worker_pi, args_list)
+    t1 = time.time()
+    # Sum results from all processes
+    pi_est = sum(results)
+    elapsed = t1 - t0
+    print(f"Estimated Pi: {pi_est}")
+    print(f"Error: {abs(np.pi - pi_est)}")
+    print(f"Execution time: {elapsed:.6f} s")
+    # -----------------------------
+    # Estimate memory bandwidth
+    # -----------------------------
+    bytes_moved = nproc * 2 * chunk_size * 8  # float64 arrays
+    bw = bytes_moved / elapsed / 1e9
+    print(f"Estimated memory bandwidth: {bw:.3f} GB/s")
+    # -----------------------------
+    # Estimate GFLOPs
+    # -----------------------------
+    # For each sample: x*x (1 mul) + 1+x*x (1 add) + 4/(...) (1 div)
+    # plus sum: ~1 add per element
+    flops_per_element = 4   # rough estimate
+    total_flops = N * flops_per_element
+    gflops = total_flops / elapsed / 1e9
+    print(f"Estimated performance: {gflops:.3f} GFLOPs")
+# -----------------------------
+if __name__ == "__main__":
+    main()
+
